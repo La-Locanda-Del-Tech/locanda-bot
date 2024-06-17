@@ -1,0 +1,43 @@
+{
+  "name": "locanda-bot",
+  "description": "Official telegram bot for la locanda del tech",
+  "author": "I'm Alex",
+  "version": "0.0.1",
+  "main": "./dist/index.js",
+  "license": "MIT",
+  "homepage": "https://github.com/La-Locanda-Del-Tech/locanda-bot",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/La-Locanda-Del-Tech/locanda-bot"
+  },
+  "bugs": {
+    "url": "https://github.com/La-Locanda-Del-Tech/locanda-bot/issues"
+  },
+  "contributors": [],
+  "scripts": {
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts",
+    "build": "tsc && tscpaths -p tsconfig.json -s ./src -o ./dist",
+    "docker-build-dev": "docker build -t locanda-bot:dev -f Dockerfile.dev .",
+    "docker-build-prod": "docker build -t locanda-bot:latest -f Dockerfile .",
+    "docker-run-dev": "docker run --rm -d locanda-bot:dev",
+    "docker-run-prod": "docker run --rm -d locanda-bot:latest"
+  },
+  "dependencies": {
+    "@ptkdev/logger": "^1.8.0",
+    "dotenv": "^16.4.5",
+    "grammy": "^1.24.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.2",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
+    "tscpaths": "^0.0.9",
+    "typescript": "^5.4.5"
+  },
+  "_moduleAliases": {
+    "@": "./dist",
+    "@handler": "./dist/handler",
+    "@type": "./dist/type"
+  }
+}
