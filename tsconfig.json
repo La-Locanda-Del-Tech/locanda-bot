@@ -9,11 +9,17 @@
     "moduleResolution": "node",
     "strict": true,
     "skipLibCheck": true,
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
     "paths": {
       "@/*": ["."],
-      "@handler/*": ["./handler/*"],
-      "@type/*": ["./type/*"],
+      "@handler/*": ["handler/*"],
+      "@commands/*": ["handler/commands/*"],
+      "@type/*": ["type/*"]
     }
+  },
+  "ts-node": {
+    "require": ["tsconfig-paths/register"]
   },
   "include": ["src"]
 }
