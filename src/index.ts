@@ -5,13 +5,13 @@ import {commands} from "@commands/index";
 const bot = new Bot(token);
 
 for (let command in commands) {
-    logger.debug(command, "Loading command ")
+    logger.debug(command, "Loading command ");
 
     commands[command]();
 }
 
 void bot.start();
-logger.info("🤖 bot started")
+logger.info("🤖 bot started");
 
 const commandsDefinition = [
     { command: 'risorselavoro', description: 'Per avere tutti i link alle risorse lavoro!' },
