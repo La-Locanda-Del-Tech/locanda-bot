@@ -2,6 +2,8 @@ import { bot }  from "@/*";
 import { InlineKeyboard } from "grammy";
 
 export default () => {
+    const verificationTimeouts: Map<number, NodeJS.Timeout> = new Map();
+
     bot.on(":new_chat_members", async (ctx) => {
         const newMember = ctx.message?.new_chat_members[0];
         if (!newMember) return;
@@ -22,22 +24,35 @@ export default () => {
             { reply_markup: keyboard }
         );
 
-        setTimeout(async () => {
+        const timeoutId = setTimeout(async () => {
             try {
                 const chatMember = await ctx.api.getChatMember(chatId, userId);
                 if (chatMember.status === "restricted") {
-                    await ctx.api.banChatMember(chatId, userId);
+                    await ctx.reply(
+                     `${newMember.first_name} non ha completato la verifica e rimarrà con le restrizioni sui messaggi.`
+                    );
+                    await ctx.reply(
+                     `Per sbloccare le restrizioni, contatta il bot in privato (/start), usa il comando /myId e comunica il numero ricevuto ad un amministratore.`
+                    );
                 }
             } catch (err) {
                 console.error("Errore nella rimozione dell'utente:", err);
             }
         }, 60_000);
+        verificationTimeouts.set(userId, timeoutId);
     });
 
     bot.callbackQuery(/^verify_(\d+)$/, async (ctx) => {
+        const userName = ctx.from.first_name;
         const userId = parseInt(ctx.match[1]);
         if (ctx.from.id !== userId) {
             return ctx.answerCallbackQuery({ text: "Non puoi verificare per un altro utente!" });
+        }
+
+        const timeoutId = verificationTimeouts.get(userId);
+        if (timeoutId) {
+            clearTimeout(timeoutId);
+            verificationTimeouts.delete(userId);
         }
 
         const chatId = ctx.chat?.id;
