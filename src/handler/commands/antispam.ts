@@ -68,5 +68,23 @@ export default () => {
     
         await ctx.answerCallbackQuery({ text: "Verifica completata! Ora puoi scrivere nel gruppo." });
         await ctx.editMessageText("✅ Verifica completata! Puoi scrivere nel gruppo.");
+        await ctx.reply(
+            `Ciao` +
+              ` ` +
+              userName +
+              ` ` +
+              `e benvenuto/a nel canale Telegram de La Locanda Del Tech!        
+                  In questo gruppo parleremo di programmazione, crescita personale e professionale, RAL, condividerò annunci di lavoro interessanti e molto altro!        
+                  Non ci sono regole particolari da seguire se non quelle legate al buonsenso ed alla sana convivenza in un gruppo (le trovi con il comando /regole).  
+                  - Ti chiedo di presentarti brevemente nel canale Chiacchiera/Off Topic ed, in generale, di partecipare attivamente alle conversazioni nel gruppo.
+                  - Sei un/una junior? C'è un topic apposta per te! Uno spazio sicuro, non giudicante, dove potrai fare tutte le domande che vuoi!
+                  - Con il comando /comecercolavoro potrai leggere una brevissima "guida" con alcuni passi utili a capire come muoversi nel mercato del lavoro IT!
+                  - Trovi anche un elenco di risorse per cercare lavoro, usa il comando /risorselavoro 
+                  - Con il comando /friends, trovi un elenco di community Telegram amiche      
+       
+                  Infine, qui trovi tutti i link dove poter seguire (e supportare) La Locanda:      
+                  https://linktr.ee/lalocandadeltech     
+                  Grazie ancora di essere qui e che la RAL sia con te!`,
+          );
     });
 }
