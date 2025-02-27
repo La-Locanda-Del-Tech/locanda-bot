@@ -15,7 +15,7 @@ export default () => {
         try {
             const id = ctx.message.text.split(' ')[1];
             if (!id) {
-                return await ctx.reply("Per favore, specifica l'username dell'utente da unmutare (es: /unmute @username)");
+                return await ctx.reply("Per favore, specifica l'username dell'utente da unmutare (es: /unmute id user)");
             }
 
             // Rimuove le restrizioni per l'utente
@@ -29,7 +29,7 @@ export default () => {
 
 
         } catch (error) {
-            await ctx.reply("Non sono riuscito a unmutare l'utente. Verifica che l'username sia corretto e che io abbia i permessi necessari.");
+            await ctx.reply("Non sono riuscito a unmutare l'utente. Verifica che l'id sia corretto e che io abbia i permessi necessari.");
         }
     });
 };
