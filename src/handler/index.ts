@@ -1,18 +1,17 @@
-import {readdirSync} from 'fs';
-import {logger} from "../config";
+import { readdirSync } from "fs";
+import { logger } from "../config";
 
-const commands: any = {}
+const commands: any = {};
 
-logger.info("Loading commands...")
+logger.info("Loading commands...");
 
-const readFile = readdirSync("./src/handler/commands")
-    .filter(file => !file.endsWith("index.ts"))
+const readFile = readdirSync("./src/handler/commands").filter(
+  (file) => !file.endsWith("index.ts"),
+);
 
-readFile.forEach(file => commands[file] = require(`./${file}`).default)
+readFile.forEach((file) => (commands[file] = require(`./${file}`).default));
 
-logger.info("Commands loaded!")
-logger.debug(commands, "Commands loaded: ")
+logger.info("Commands loaded!");
+logger.debug(commands, "Commands loaded: ");
 
-export {
-    commands
-}
+export { commands };
